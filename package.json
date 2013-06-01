@@ -1,0 +1,33 @@
+{
+    "name":"Vocabulous API",
+    "title":"Vocabulous API",
+    "description":"",
+    "version":"0.0.1",
+    "author":{
+        "name":"Brett Jones",
+        "email":"brettjonesdev@gmail.com",
+        "url":"http://www.brettjonesdev.com"
+    },
+    "repository":{
+        "type":"git",
+        "url":"git@github.com:brettjonesdev/vocabulous-api.git"
+    },
+    "devDependencies":{
+        "express":"3.x",
+        "grunt":"~0.4.1",
+        "grunt-contrib-requirejs":"~0.4.0",
+        "grunt-contrib-jshint":"~0.3.0",
+        "uglify-js":"~2.2.5"
+    },
+    "dependencies":{
+        "express":"3.x",
+        "underscore":"1.4.2",
+        "emailjs":"0.3.2",
+        "mongodb":"*",
+        "mongoose":"3.6.0",
+        "mongoose-3x-types":"1.0.5",
+        "passport": "latest",
+        "passport-local": "latest"
+    },
+    "main":"./app"
+}
