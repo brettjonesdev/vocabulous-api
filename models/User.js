@@ -6,7 +6,7 @@ var useTimestamps = mongooseTypes.useTimestamps;
 
 var UserSchema = new mongoose.Schema({
     email: { type:mongoose.Schema.Types.Email, unique: true, required: true },
-    active: Boolean,
+    active: {type:Boolean, default:true},
     tempAuthCode: String,
     hashedPassword: String
 });

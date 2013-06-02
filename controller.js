@@ -1,4 +1,6 @@
 var User = require("./models/User");
+var Word = require("./models/Word");
+var UserWord = require("./models/UserWord");
 var auth = require("./auth");
 
 exports.authenticate = function(req,res) {
@@ -23,7 +25,11 @@ exports.authenticate = function(req,res) {
 };
 
 exports.addWord = function(req,res) {
-    var word = req.body;
+    /*var word = new Word(req.body);
+    var definition =
+    word.save(function(err, wordDoc) {
+
+    });*/
     res.json({success:true});
 };
 
@@ -43,5 +49,18 @@ exports.getAllWords = function(req,res) {
 };
 
 exports.register = function(req,res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    var user = new User({email:email, password:password});
+    user.save(function(err,user) {
+        if (err) {
+            res.json(500, err);
+        } else {
+            console.log("user", user);
+            var token = auth.getToken(user);
+            console.log("token", token);
+            res.json({token: token});
+        }
+    });
 
 };

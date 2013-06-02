@@ -19,8 +19,6 @@ app.configure(function () {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
 
-    app.use(passport.initialize());
-
     //must go last
     app.use(app.router);
 });
