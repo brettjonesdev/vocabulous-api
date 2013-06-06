@@ -6,16 +6,15 @@ var useTimestamps = mongooseTypes.useTimestamps;
 
 var UserSchema = new mongoose.Schema({
     email: { type:mongoose.Schema.Types.Email, unique: true, required: true },
-    active: {type:Boolean, default:true},
-    tempAuthCode: String,
-    hashedPassword: String
+    retireOn: {type:Number, default: 3},
+    promptFrequency: {type:String,enum:["Never","Occasionally","Frequently"], default: "Occasionally"}
 });
 
  UserSchema.virtual('password')
  .set(function(password) {
  this._password = password;
  this.salt = this.makeSalt();
- this.hashed_password = this.encryptPassword(password)
+ this.hashedPassword = this.encryptPassword(password)
  })
  .get(function() { return this._password });
 
@@ -26,7 +25,7 @@ UserSchema.index({email: 1});
 //instance methods
 UserSchema.methods = {
     authenticate: function(plainText) {
-        return (( this.encryptPassword(plainText) === this.hashed_password) && this.active);
+        return (( this.encryptPassword(plainText) === this.hashedPassword) && this.active);
     },
 
     makeSalt: function() {

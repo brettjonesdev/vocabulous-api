@@ -17,7 +17,7 @@ exports.authenticate = function(req,res,next){
             else if (!user) {
                 res.json(401, "Unable to find User with this user id");
             }
-            else if (user.hashed_password === hashedPassword) {
+            else if (user.hashedPassword === hashedPassword) {
                 next();
             }
             else {
@@ -30,7 +30,7 @@ exports.authenticate = function(req,res,next){
 };
 
 exports.getToken = function(user) {
-    var token = user._id + ":" + user.hashed_password;
+    var token = user._id + ":" + user.hashedPassword;
 
     return new Buffer(token).toString('base64');
 };
